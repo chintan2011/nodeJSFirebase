@@ -26,6 +26,8 @@ app.delete('/', function (req, res){
 
 // initialize firebase
 
+// NOTE: read and write permissions are set to false, please request to set it to true if you want to test
+
 var config = {
 	apiKey: "AIzaSyDyz8b3ADJDc2nbrTZEZVWrcAIiOByCVG0",
 	authDomain: "nodejsfirebase-3feb2.firebaseapp.com",
