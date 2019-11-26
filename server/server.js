@@ -22,6 +22,18 @@ app.delete('/', function (req, res){
 	res.send("HTTP DELETE Request");
 });
 
+// initialize firebase
+var firebase = require('firebase');
+var config = {
+	apiKey: "APIKEY",
+	authDomain: "AUTHDOMAIN",
+	databaseURL: "TESTURL",
+	projectId: "PROJECTID",
+	storageBucket: "PROJECTBUCKET",
+	messagingSenderId: "ID"
+};
+
+firebase.initializeApp(config);
 
 // start server on port 8080
 var server = app.listen(8080, function(){
