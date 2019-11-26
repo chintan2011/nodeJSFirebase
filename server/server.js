@@ -1,10 +1,15 @@
 var express = require('express'); //import express
 var firebase = require('firebase');
-var app = express();
+var bodyParser = require('body-parser');
 
+
+var app = express();
+app.use(bodyParser.json()); // to parse HTTP request body
+
+/*
 // handle HTTP Get requests
 app.get('/', function (req, res){
-	console.log("Get Request");
+	console.log("HTTP Get Request");
 	res.send("Get Request");
 	firebase.database().ref('/TestMessages').set({TestMessage: 'GET Request'});
 });
@@ -22,7 +27,7 @@ app.post('/', function (req, res){
 app.delete('/', function (req, res){
 	console.log("HTTP DELETE Request");
 	res.send("HTTP DELETE Request");
-});
+});*/
 
 // initialize firebase
 
@@ -40,6 +45,25 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+// Fetch Instances
+app.get('/', function(req, res){
+	console.log("HTTP GET Request");
+	
+	var userReference = firebase.database().ref("/Users/");
+
+	// Attach async callback to read the data
+	userReference.on("value", 
+				function(snapshot){
+					console.log(snapshot.val());
+					res.json(snapshot.val());
+					userReference.off("value");
+				},
+				function (errorObj){
+					console.log("The read failed: " + errObj.code);
+					res.send("The read failed " + errObj.code);
+				});
+});
 
 // start server on port 8080
 var server = app.listen(8080, function(){
