@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chintan2011/nodeJSFirebase.git"
+  },
+  "author": "Chintan Savalia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chintan2011/nodeJSFirebase/issues"
+  },
+  "homepage": "https://github.com/chintan2011/nodeJSFirebase#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
