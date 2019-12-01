@@ -65,6 +65,58 @@ app.get('/', function(req, res){
 				});
 });
 
+//Create new instance
+app.put('/', function (req, res) {
+
+	console.log("HTTP Put Request");
+
+	var userName = req.body.UserName;
+	var name = req.body.Name;
+	var age = req.body.Age;
+
+	var referencePath = '/Users/'+userName+'/';
+	var userReference = firebase.database().ref(referencePath);
+	userReference.set({Name: name, Age: age}, 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be saved." + error);
+					} 
+					else {
+						res.send("Data saved successfully.");
+					}
+			});
+});
+
+//Update existing instance
+app.post('/', function (req, res) {
+
+	console.log("HTTP POST Request");
+
+	var userName = req.body.UserName;
+	var name = req.body.Name;
+	var age = req.body.Age;
+
+	var referencePath = '/Users/'+userName+'/';
+	var userReference = firebase.database().ref(referencePath);
+	userReference.update({Name: name, Age: age}, 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be updated." + error);
+					} 
+					else {
+						res.send("Data updated successfully.");
+					}
+			    });
+});
+
+//Delete an instance
+app.delete('/', function (req, res) {
+
+	console.log("HTTP DELETE Request");
+	//todo
+ });
+ 
+
 // start server on port 8080
 var server = app.listen(8080, function(){
 	var host = server.address().address;
